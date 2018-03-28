@@ -75,25 +75,21 @@ namespace VehicleManager
 
 		private void editToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (vehicleListView.SelectedItems.Count == 1) {
-				Vehicle vehicle = (Vehicle)vehicleListView.SelectedItems[0].Tag;
-				AddForm form = new AddForm(vehicle);
-				if (form.ShowDialog() == DialogResult.OK) {
-					vehicle.Make = form.VehicleMake;
-					vehicle.Speed = form.VehicleSpeed;
-					vehicle.Date = form.VehicleDate;
-					vehicle.Type = form.VehicleType;
-					((MainForm)MdiParent).EditVehicle(vehicle);
-				}
+			Vehicle vehicle = (Vehicle)vehicleListView.SelectedItems[0].Tag;
+			AddForm form = new AddForm(vehicle);
+			if (form.ShowDialog() == DialogResult.OK) {
+				vehicle.Make = form.VehicleMake;
+				vehicle.Speed = form.VehicleSpeed;
+				vehicle.Date = form.VehicleDate;
+				vehicle.Type = form.VehicleType;
+				((MainForm)MdiParent).EditVehicle(vehicle);
 			}
 		}
 
 		private void removeToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (vehicleListView.SelectedItems.Count == 1) {
-				Vehicle vehicle = (Vehicle)vehicleListView.SelectedItems[0].Tag;
-				((MainForm)MdiParent).RemoveVehicle(vehicle);
-			}
+			Vehicle vehicle = (Vehicle)vehicleListView.SelectedItems[0].Tag;
+			((MainForm)MdiParent).RemoveVehicle(vehicle);
 		}
 
 		private ListViewItem FindItemByTag(Vehicle vehicle)
@@ -183,6 +179,18 @@ namespace VehicleManager
 				return true;
 			}
 			return false;
+		}
+
+		private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+		{
+			if (vehicleListView.SelectedItems.Count == 1) {
+				removeToolStripMenuItem.Enabled = true;
+				editToolStripMenuItem.Enabled = true;
+			}
+			else {
+				removeToolStripMenuItem.Enabled = false;
+				editToolStripMenuItem.Enabled = false;
+			}
 		}
 	}
 }
