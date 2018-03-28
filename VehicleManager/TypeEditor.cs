@@ -18,7 +18,7 @@ namespace VehicleManager
 
 		public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
 		{
-			return UITypeEditorEditStyle.Modal;
+			return UITypeEditorEditStyle.DropDown;
 		}
 
 		public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
@@ -26,6 +26,8 @@ namespace VehicleManager
 			IWindowsFormsEditorService edSvc = (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
 			if (edSvc != null) {
 				TypeControl type = new TypeControl();
+				type.Type = (Vehicle.type)value;
+				type.BackColor = System.Drawing.Color.White;
 				edSvc.DropDownControl(type);
 				return type.Type;
 			}

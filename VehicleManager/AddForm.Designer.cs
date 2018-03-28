@@ -148,7 +148,7 @@
 			this.typeControl.Name = "typeControl";
 			this.typeControl.Size = new System.Drawing.Size(80, 80);
 			this.typeControl.TabIndex = 9;
-			this.typeControl.Type = VehicleManager.Vehicle.type.Bike;
+			this.typeControl.Type = VehicleManager.Vehicle.type.Truck;
 			this.typeControl.TypeChanged += new System.EventHandler(this.typeControl_TypeChanged);
 			// 
 			// AddForm
