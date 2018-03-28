@@ -23,7 +23,7 @@ namespace VehicleManager
 
 		public String VehicleMake
 		{
-			get { return makeTextBox.Text; }
+			get { return makeTextBox.Text.Trim(); }
 		}
 
 		public int VehicleSpeed
@@ -56,7 +56,7 @@ namespace VehicleManager
 
 		private void makeTextBox_Validating(object sender, CancelEventArgs e)
 		{
-			if (makeTextBox.Text.Length == 0) {
+			if (makeTextBox.Text.Trim().Length == 0) {
 				e.Cancel = true;
 				errorProvider.SetError(makeTextBox, errorText);
 			}
